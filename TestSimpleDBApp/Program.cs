@@ -1,8 +1,10 @@
 ﻿using SimpleDB.Interfaces;
 using SimpleDB.MSSql;
+using SimpleDB.Extensions.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 
 namespace TestSimpleDBApp
 {
@@ -11,19 +13,15 @@ namespace TestSimpleDBApp
         static void Main(string[] args)
         {
             ISimpleDB db = new MSSqlSimpleDB(new MSSqlBASICSimpleConnnectionString());
+            var test22 = db
+                .GetDataReader("test3", new Dictionary<string, object>())
+                .ReadAs<testmodel>()
+                .ToList();
 
-            var test3 = db.GetScaler("test3", new Dictionary<string, object>());
-            Console.WriteLine(test3);
-            var test = db.GetDataSet("test", new Dictionary<string, object>());
-            Console.WriteLine(test.Tables.Count);
-            var test1 = db.GetDataReaders("test", new Dictionary<string, object>());
-            Console.WriteLine(test1.Count());
-            var test2 = db.GetDataReaders("test2", new Dictionary<string, object>());
-            Console.WriteLine(test2.Count());
-            var test21 = db.GetDataSet("test2", new Dictionary<string, object>());
-            Console.WriteLine(test21.Tables.Count);
-            var test22 = db.GetDataReader("test2", new Dictionary<string, object>());
-            Console.WriteLine(test22.Read());
+                
+
+                
+            Console.WriteLine(test22.Count());
             Console.ReadLine();
         }
     }

@@ -37,6 +37,15 @@
     <StartupObject>TestSimpleDBApp.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SimpleDB.Extensions, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleDB.Extensions.1.0.4\lib\netstandard2.0\SimpleDB.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleDB.Interfaces, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleDB.Interfaces.1.0.1\lib\netstandard2.0\SimpleDB.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleDB.MSSql, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleDB.MSSql.1.0.1\lib\netstandard2.0\SimpleDB.MSSql.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlClient, Version=4.6.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -50,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,16 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleDB.MSSql\SimpleDB.MSSql.csproj">
-      <Project>{279c4ddf-274b-489b-be35-2f89a04d27c3}</Project>
-      <Name>SimpleDB.MSSql</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\simpledb\SimpleDB.Interfaces.csproj">
-      <Project>{a5042240-30bd-41cf-a0cb-f2af166c14a4}</Project>
-      <Name>SimpleDB.Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

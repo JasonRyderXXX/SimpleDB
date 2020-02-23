@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Simplified DB Coding</Description>
+    <Authors>Robert Pike</Authors>
+    <Company>Quiksynk Technologies</Company>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
