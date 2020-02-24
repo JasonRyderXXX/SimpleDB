@@ -26,11 +26,7 @@ namespace SimpleDB.Extensions.Linq
             .GetProperties()
             .Where(a => a.CanWrite)
             .ToDictionary(a => a.Name, a => new Action<object,object>(a.SetValue),StringComparer.CurrentCultureIgnoreCase);
-        private static IDictionary<string, Action<object, object>> GetDataAttributeSetter(object value) =>
-            value
-            .GetType()
-            .GetProperties()
-            .Where(a => a.
+
         public static void ForEach<t>(this IEnumerable<t> items,Action<t> action)
         {
             foreach (t item in items)
@@ -41,7 +37,8 @@ namespace SimpleDB.Extensions.Linq
             var valtype = typeof(t);
             if (!SetterCache.ContainsKey(valtype))
                 SetterCache.Add(valtype,GetPropertyNameSetter(value));
-            SetterCache[valtype][propertyname](value,propvalue);
+            if(SetterCache[valtype].ContainsKey(propertyname))
+                SetterCache[valtype][propertyname](value,propvalue);
             return value;
         }
         public static t CastAs<t> (this IDataRecord record) where t:new()
