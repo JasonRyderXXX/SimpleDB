@@ -20,12 +20,17 @@ namespace SimpleDB.Extensions.Linq
             for (int i = 0; i < record.FieldCount; i++)
                 yield return new KeyValuePair<string, object>(record.GetName(i), record[i]);
         }
-        private static IDictionary<string, Action<object, object>> GetSetters(object value)=>
+        private static IDictionary<string, Action<object, object>> GetPropertyNameSetter(object value)=>
             value
             .GetType()
             .GetProperties()
             .Where(a => a.CanWrite)
             .ToDictionary(a => a.Name, a => new Action<object,object>(a.SetValue),StringComparer.CurrentCultureIgnoreCase);
+        private static IDictionary<string, Action<object, object>> GetDataAttributeSetter(object value) =>
+            value
+            .GetType()
+            .GetProperties()
+            .Where(a => a.
         public static void ForEach<t>(this IEnumerable<t> items,Action<t> action)
         {
             foreach (t item in items)
@@ -35,7 +40,7 @@ namespace SimpleDB.Extensions.Linq
         {
             var valtype = typeof(t);
             if (!SetterCache.ContainsKey(valtype))
-                SetterCache.Add(valtype,GetSetters(value));
+                SetterCache.Add(valtype,GetPropertyNameSetter(value));
             SetterCache[valtype][propertyname](value,propvalue);
             return value;
         }
